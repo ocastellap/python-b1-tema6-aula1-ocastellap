@@ -77,12 +77,25 @@ Exemple:
 
 def read_txt_file(path: str) -> str:
     #Write your code here
-    pass
-
-
+    # Obrir el fitxer en mode lectura. Codificació UTF-8
+    with open(path, "r", encoding = "utf-8") as file:
+        return file.read()
+    
 def words_counter(text: str, word: str) -> int:
     #Write your code here
-    pass
+    # Passem el text a minúscules
+    text = text.lower()
+    word = word.lower()
+
+    # Eliminar els signes de puntuació
+    for char in string.punctuation:
+        text = text.replace(char, " ")
+
+    # Separar el text en paraules
+    words = text.split()
+
+    return words.count(word)
+    
 
 
 # Si quieres probar tu código, descomenta las siguientes líneas y ejecuta el script
