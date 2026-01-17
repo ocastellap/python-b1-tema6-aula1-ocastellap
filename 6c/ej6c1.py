@@ -71,7 +71,29 @@ nltk.download("vader_lexicon")
 
 def sentiment_analysis(text):
     #Write your code here
-    pass
+    # Crear l'analitzador de sentiments
+    analyzer = SentimentIntensityAnalyzer()
+
+    # Obtenir les puntuacions de sentiment
+    scores = analyzer.polarity_scores(text)
+
+    # afegir la puntuació composta 
+    compound = scores["compound"]
+    neg = scores["neg"]
+    pos = scores["pos"]
+
+    # Retorn segons siguin les puntuacions
+    if compound >0.05:
+        return "Positive"
+    
+    elif compound < 0.05:
+        if pos >= neg:
+            return "Neutral"
+        return "Negative"    
+    
+    else:
+        return "Neutral"
+    
 
 
 # Si quieres probar tu código, descomenta las siguientes líneas y ejecuta el script
